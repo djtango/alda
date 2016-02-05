@@ -1,21 +1,18 @@
 (ns alda.lisp.model.marker
-  (:require [alda.lisp.model.event   :refer (set-current-offset)]
-            [alda.lisp.model.offset  :refer (absolute-offset
+  (:require [alda.lisp.model.offset  :refer (absolute-offset
                                              instruments-all-at-same-offset)]
-            [alda.lisp.model.records :refer (->AttributeChange
-                                             ->Marker
+            [alda.lisp.model.records :refer (->Marker
                                              ->RelativeOffset)]
-            [alda.lisp.score.context :refer (*current-instruments*
-                                             *events*
-                                             *instruments*)]
             [taoensso.timbre         :as    log]))
 
-(defn $current-marker
+; TODO: refactor all this stateful, stateful bullshit
+
+#_(defn $current-marker
   "Get the :current-marker of an instrument."
   ([] ($current-marker (first *current-instruments*)))
   ([instrument] (-> (*instruments* instrument) :current-marker)))
 
-(defn marker
+#_(defn marker
   "Places a marker at the current absolute offset. Logs an error if there are
    multiple instruments active at different offsets."
   [name]
@@ -27,7 +24,7 @@
       (->Marker name offset))
     (log/error "Can't place marker" (str \" name \") "- offset unclear.")))
 
-(defn at-marker
+#_(defn at-marker
   "Set the marker that events will be added to."
   [marker]
   (doall
