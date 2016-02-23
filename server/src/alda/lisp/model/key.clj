@@ -27,7 +27,7 @@
                          [letter (conj accidentals this)])))
                    (map (comp keyword str) "abcdefg")))))
 
-(def ^:private sharpen-key
+(defonce ^:private sharpen-key
   "Raises a key signature by one semitone.
    
    All notes in the key signature that were flat become natural, notes that
@@ -39,7 +39,7 @@
    {:f [:sharp] :c [:sharp]}"
   (shift-key :sharp :flat))
 
-(def ^:private flatten-key
+(defonce ^:private flatten-key
   "Lowers a key signature by one semitone.
    
    All notes in the key signature that were sharp become natural, notes that

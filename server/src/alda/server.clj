@@ -80,17 +80,17 @@
                "X-Alda-Version" -version-}
      :body    body}))
 
-(def ^:private success      (response 200))
-(def ^:private user-error   (response 400))
-(def ^:private server-error (response 500))
+(defonce ^:private success      (response 200))
+(defonce ^:private user-error   (response 400))
+(defonce ^:private server-error (response 500))
 
-(def unsaved-changes-response
+(defonce unsaved-changes-response
   ((response 409) (str "Warning: the score has unsaved changes. Are you sure "
                        "you want to do this?\n\n"
                        "If so, please re-submit your request and include the "
                        "header X-Alda-Confirm:yes.")))
 
-(def existing-file-response
+(defonce existing-file-response
   ((response 409) (str "Warning: there is an existing file with the filename "
                        "you specified. Saving the score to this file will "
                        "erase whatever is already there. Are you sure you "
